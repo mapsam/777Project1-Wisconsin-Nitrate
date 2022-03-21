@@ -1,0 +1,116 @@
+
+<html lang="en">
+<head>
+  <title>Wisconsin Cancer | Nitrate Data</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!--Google Fonts-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap" rel="stylesheet">
+  <!---------------------->
+  <!---Css---->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" /> 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="lib/leaflet/leaflet.css">
+	<link rel="stylesheet" href="css/style.css"/>
+	<link rel="stylesheet" href="css/leaflet-search.css"/>
+  <link rel="stylesheet" href="leaflet.zoomhome.css"/>
+  <link rel="stylesheet" href="css/jquery-ui.css">
+  <!------------------------>
+  <!--Link to scripts-->
+  <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin=""></script>
+	<script src="leaflet.zoomhome.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <!--<script type="text/javascript" src="lib/leaflet/leaflet-search.js"></script>-->
+  <script type="text/javascript" src="lib/jquery-ui.js"></script>	
+  <script type="text/javascript" src="lib/jquery-3.3.1.js"></script>
+  <!--Turf and Chart-->
+  <script type="text/javascript" src="lib/regressionjs.js"></script>
+  <script src=https://cdnjs.cloudflare.com/ajax/libs/regression/2.0.1/regression.min.js></script>
+  <script src=https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js></script>
+  <!--<script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>-->
+  <script src='https://unpkg.com/@turf/turf@6/turf.min.js'></script>
+  <script src='https://unpkg.com/simple-statistics@7.7.5/dist/simple-statistics.min.js'></script>
+
+  <!--variable scripts--->
+  <script type="text/javascript" src="data/well_Array.js"></script>
+  <script type="text/javascript" src="data/well_Points.js"></script>
+	<script type="text/javascript" src="data/cancer_tract.js"></script>
+  <script type="text/javascript" src="data/tractPoly.js"></script>
+	<script type="text/javascript" src="data/Results.js"></script>
+
+
+
+  <style>
+    /*This is the pill buttons --this must be in html to have home image work*/  
+    .leaflet-touch .leaflet-bar a:last-child {
+    
+    /*This is the home button image*/
+    background-image: url("lib/leaflet/images/homeButton15px.jpg");
+ }
+  </style>
+</head>
+<body>
+
+
+<div class="container-fluid">
+  <div class="row content2">
+    <div class="col-sm-8"><!--<div class="col-sm-4">-->
+      <!--<p style="font-size: 25px; display: inline; color: crimson;padding-left: 15px;padding-right: 12px;">Enter Value for K Greater than 1</p>-->
+  
+      <div style="display: inline;"id="input-box"><input type="text" name="input" placeholder="K value and press [Enter]"></input></div>
+    </div>
+    <div class="col-sm-4">
+      <a href="index.html" class="button" id="resetButton" >Click Here to Reset Map</a>
+    </div>
+      <!--<p style="font-size: 25px; display: inline; color: crimson;padding-left: 15px;padding-right: 12px;">Enter Value for K Greater than 1</p>
+      <div id="input-box"><input type="text" name="input" placeholder="K value and press [Enter]"></input></div>
+      <a href="index.html" class="button" style="border-bottom-left-radius: 2px; border-bottom-right-radius: 2px;">Click Here to Reset Map</a>-->
+  </div>
+
+  <div class="row content">
+    <div class="col-sm-8">
+      <div id='map' style="height:750px"></div>
+    </div>
+    
+    <div class="col-sm-4 sidenav">
+      <h2 class= "wisctitle" style="font-weight: bold">TITLE: Wisconsin Nitrate Levels in Well Locations and Cancer Rates</h2>
+        <p  style="font-size: 14px"> Information about interpolation values. Cancer rates...  </p>
+        <canvas id="myChart" width= "400" height= "300"></canvas>
+      
+      <h4 class="wiscinfo" style="font-weight: bold"> HEADER text: The map to the left shows the final results of IDW interpolation based on user input for k value</h4>
+       
+        
+        <p>Placeholder for paragrpah </p>
+
+    </div><!--side column-->
+    
+  </div><!--row content-->
+</div><!--container-->
+
+<!--TEST FOR CHART <div class="container-fluid">
+  <div class="row content">
+    <div class="col-lg-12" id="chartColumn">
+      
+      <header class="container-fluid" id="chartHeader"></header>
+      CHART
+      <canvas id="myChart" width= "400" height= "200"></canvas>
+      EndChart
+    </div>
+  </div>
+</div>-->
+
+<script type="text/javascript" src="js/wiscmain3.js"></script>
+<footer class="container-fluid">
+  <p>Created By: <a href="https://avstark-gis.github.io/avstark-gis-572Portfolio/" target="_blank">Alissa Stark</a>
+</footer>
+</body>
+</html>

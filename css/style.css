@@ -1,0 +1,162 @@
+html, body {
+		height: 100%;
+		margin: 0;
+        padding-top: 0px; /*was 15*/
+	}
+		
+#map {
+		width: 100%;
+		height: 100%;
+}
+
+#chartHeader {
+padding: 12px;
+font-size: 8px; 
+color: white;
+background-color: slategrey;
+box-shadow: 0 0 15px rgba(0,0,0,0.2); 
+border-radius: 1px;
+    
+}
+#chart{
+    width: 95%;
+    height: 250px;
+    background-color: aqua;
+    
+}	
+
+#input-column {
+    background-color:white;
+    /*#f1f1f1*/
+    padding: 5px;
+    padding-bottom: 15px;
+    font-size: 16px; 
+    font-family: 'Poppins', sans-serif;
+    color:rgb(29, 28, 28);
+}
+#input-box {
+    display: inline;
+    width: 18%; 
+    height: 30px; 
+    font-size: 22px;
+    margin-left: 15px;
+    margin-right:15px;
+}   
+.button {
+    background-color:crimson;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 5px 5px;
+  }
+/* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+.row.content {
+    height: 750px
+} /*was 550*/
+.row.content2 {
+    height: 50px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    display:-ms-inline-grid;
+    justify-content: space-evenly;
+} 
+    
+/* Set gray background color and 100% height */
+.sidenav {
+  background-color: #f1f1f1;
+  height: 750px; /*was550*/
+  padding-top:8px;
+  
+}
+
+/* Set black background color, white text and some padding */
+footer {
+  background-color: #555;
+  height: auto;
+  color: white;
+
+}
+
+/* On small screens, set height to 'auto' for sidenav and grid */
+@media screen and (max-width: 767px) {
+  .sidenav {
+    height: auto;
+    padding: 15px;
+  }
+  .row.content {height: auto;} 
+}
+
+.info { 
+    padding:8px 11px; 
+    font: 12px/18px; 
+    background-color: slategrey;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2); 
+    border-radius: 5px; 
+} 
+
+.info h4 {
+	margin: 0 0 5px;
+    font:14px;
+ 	color:#fff; 
+}
+
+.info h5 {
+    margin: 0 0 5px;
+    color: #fff; 
+}
+
+
+.legend { 
+    text-align: left;
+    line-height: 17px; 
+    color: #fff;
+    background-color: slategrey;
+}
+
+.legend i { 
+    width: 10px;
+    height: 13px; 
+    float: left; 
+    margin-right: 8px; 
+    opacity: 0.7; 
+    background-color: slategrey;
+}
+
+.header-basic-light{
+	padding: 10px 10px;
+	box-sizing:border-box;
+	box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.15);
+	height: 7%;
+    text-align: center;
+	background-color: slategrey;
+}
+
+.leaflet-top, .leaflet-right{
+	margin: 10px;
+    font-size: 13px;
+    text-align: left;  /*was center*/
+}
+
+.header-basic .header-limiter {
+	max-width: 1200px;
+	text-align: center;
+	margin: 0 auto;
+}
+
+ /*panel added styles*/
+ .wisctitle, .wiscintro {
+    font-family: 'Poppins', sans-serif;
+   
+ }
+.wisctitle{
+    font-size:  30px;  
+}
+ .nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover{
+     background-color: crimson;
+     font-size: 16px;
+ }
+ 
