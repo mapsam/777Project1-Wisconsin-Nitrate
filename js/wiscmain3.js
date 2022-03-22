@@ -9,7 +9,7 @@ var defaultK = Number(1);
 var newVal = defaultK;
 var map;
 //========= input K =========
-function processInput(newVal){
+function processInput(map, attSel, newVal){ //was just newVal
     if (isNaN(newVal)){
       window.alert("Please Enter a Number");
       $('#input-box').val();
@@ -23,7 +23,7 @@ function processInput(newVal){
       $('#input-box').val();
       
     }
-    updateMap(newVal);
+    updateMap(map, attSel, newVal); //was just newVal
     useKvalueTest(newVal);
 }
 
@@ -39,7 +39,8 @@ var mapboxAtt = 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenSt
 mapboxUrl = 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGFuY2VsYXphcnRlIiwiYSI6ImNrcDIyZHN4bzAzZTEydm8yc24zeHNodTcifQ.ydwAELOsAYya_MiJNar3ow';
 
 var map = L.map('map', {
-    zoomControl: false
+    zoomControl: false,
+    scrollWheelZoom: false
 });
 map.setView([44.605, -89.865], 6.5);
 
@@ -267,12 +268,14 @@ function onEachFeature(feature, layer) {
     });
 }
 console.log("this is after styling the map");   
+
 //======== Update the Map Object  ============
 
 function updateMap(map, attSel, newVal){
 
     var findLayers = new L.layerGroup();
     console.log("right before it breaks?");
+    console.log("this is the map object");console.log(map);
     map.eachLayer(function(layer){  
         
         findLayers.addLayer(layer); 
@@ -544,8 +547,10 @@ console.log("Right before Jquery");
 $('#attOpt').change(function(){
 attID = document.getElementById('attOpt');
 attVal = attID.options[attID.selectedIndex].value;
-//layer.remove(); //this make it unusable
-updateMap(map,attVal);
+attSel = attVal; //added
+
+console.log("map,attval");console.log(map,attVal);
+updateMap(map, attSel, newVal);  //changed from map, attVal
 
 })
 
@@ -556,7 +561,7 @@ $('#input-box').change(function(){
     newVal = Number($('input').val());
     console.log(typeof newVal + "" + newVal);
     //updateMap(map, newVal);
-    processInput(newVal);
+    processInput(map, attSel, newVal);
 })
 
 
