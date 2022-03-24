@@ -13,15 +13,15 @@ function processInput(newVal){
     if (isNaN(newVal)){
       window.alert("Please Enter a Number");
       $('#input-box').val();
-      
+
     } else if (newVal <= 0){
       window.alert("Please Enter a Number Greater Than Zero");
       $('#input-box').val();
-      
+
     } else {
       window.alert("Sending your K Value Now");
       $('#input-box').val();
-      
+
     }
     updateMap(newVal);
     useKvalueTest(newVal);
@@ -220,7 +220,7 @@ function getColorCan(d) {
                 d > -1 ? '#f2f0f7' : //light blue-grey  was #d0d1e6
                 '#eeefee';  //map grey 
 }
-    
+
 //----Style for layers
 function styleLayer(feature) {
     if(attSel == "canrate"){
@@ -266,10 +266,10 @@ function onEachFeature(feature, layer) {
         click: zoomToFeature        
     });
 }
-console.log("this is after styling the map");   
+console.log("this is after styling the map");
 //======== Update the Map Object  ============
 
-function updateMap(map, attSel, newVal){
+function updateMap(newVal){
 
     var findLayers = new L.layerGroup();
     console.log("right before it breaks?");
@@ -280,13 +280,13 @@ function updateMap(map, attSel, newVal){
             
             if(attSel == "canrate"){
                 
-    
+
                 legend.onAdd = function (map) {
                     var legdiv = L.DomUtil.create('div', 'info legend'),
                                 grades = [0, .10, .20, .30, .40, .50, .60],
                                 labels = [],
                                 from, to ;// to
-    
+
                             for (var i = 0; i < grades.length; i++) {
                                 from = grades[i];  
                                 to = grades[i + 1];  
@@ -295,7 +295,7 @@ function updateMap(map, attSel, newVal){
                                     '<i style="background:' + getColorCan(from + .01) + '"></i> ' +
                                     from + (to ?  ' ' + 'to' + ' ' + to + '% ' : '+ %'));
                             }
-    
+
                         legdiv.innerHTML = labels.join('<br>');
                             return legdiv;
                 };
@@ -307,7 +307,7 @@ function updateMap(map, attSel, newVal){
                 };
                 info.remove();
                 info.addTo(map)
-    
+
                 var color = getColorCan(layer.feature.properties.canrate); //this needs to be .canrate 
             //end of cancer rate   
             } 
@@ -320,7 +320,7 @@ function updateMap(map, attSel, newVal){
                             grades = [-1, 0, 1, 2, 3, 5, 7],
                             labels = [],
                             from, to; //from,
-    
+
                         for (var i = -1; i < grades.length; i++) {   //
                             from = grades[i] ;
                             to = grades[i + 1]; //-1
@@ -349,7 +349,7 @@ function updateMap(map, attSel, newVal){
                                 grades = [-1, 0, 1, 2, 3, 5, 7],
                                 labels = [],
                                 from, to; //from,
-        
+
                             for (var i = -1; i < grades.length; i++) {   //
                                 from = grades[i] ;
                                 to = grades[i + 1]; //-1
@@ -395,12 +395,12 @@ function updateMap(map, attSel, newVal){
             });
             layer.redraw();
             layer.addTo(map);
-    
+
         }; //if attSel
-  
+
     }); //end map each layer call back
 }; //end update map
-      
+
 //========== TURF =============
 console.log("This is above turf");
 //function useKvalue (newVal, map){
