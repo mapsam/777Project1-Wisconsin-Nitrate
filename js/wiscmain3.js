@@ -24,7 +24,7 @@ function processInput(newVal){
 
     }
     updateMap(newVal);
-    useKvalueTest(newVal);
+    useKvalue(newVal);
 }
 
 function useKvalueTest(newVal){
@@ -403,7 +403,8 @@ function updateMap(newVal){
 
 //========== TURF =============
 console.log("This is above turf");
-//function useKvalue (newVal, map){
+let myChart;
+function useKvalue (newVal) {
     // Set initial featureCollections 
     let pointsFeature = turf.featureCollection(wellArray);
     let cancerFeature = turf.featureCollection(cancerTract);
@@ -506,7 +507,8 @@ console.log("This is above turf");
 
     //========== Chart ===================
     const ctx = document.getElementById('myChart').getContext('2d');
-            const myChart = new Chart(ctx, {
+    if (myChart) myChart.destroy(); // https://stackoverflow.com/questions/40056555/destroy-chart-js-bar-graph-to-redraw-other-graph-in-same-canvas
+    myChart = new Chart(ctx, {
                 type: 'scatter',
                 data: {
                     labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
@@ -534,7 +536,7 @@ console.log("This is above turf");
         onEachFeature: onEachFeature
     });
     map.addLayer(canIdwjson);
-//}
+}
 console.log("Right before Jquery");
 
 // ======== Jquery =========
